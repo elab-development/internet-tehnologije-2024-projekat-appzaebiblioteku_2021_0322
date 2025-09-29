@@ -21,6 +21,8 @@ Route::get('/books/page/{page}', [BookController::class, 'pagination']);
 Route::get('/books/{id}', [BookController::class, 'show']);
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::get('/authors/{id}', [AuthorController::class, 'show']);
+Route::get('/genres', [GenreController::class, 'index']);
+Route::get('/genres/{id}', [GenreController::class, 'show']);
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -31,6 +33,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
      Route::resource('books', BookController::class)
         ->only(['store', 'update', 'destroy']);
 Route::resource('authors', AuthorController::class)
+        ->only(['store', 'update', 'destroy']);
+    Route::resource('genres', GenreController::class)
         ->only(['store', 'update', 'destroy']);
    
     Route::post('/logout', [AuthController::class, 'logout']);
